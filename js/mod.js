@@ -1,19 +1,19 @@
 let modInfo = {
-	name: "The ??? Tree",
-	author: "nobody",
-	pointsName: "points",
+	name: "The Size Tree",
+	author: "ThePolishCyan",
+	pointsName: "vectors",
 	modFiles: ["layers.js", "tree.js"],
 
 	discordName: "",
 	discordLink: "",
 	initialStartPoints: new Decimal (10), // Used for hard resets and new players
-	offlineLimit: 1,  // In hours
+	offlineLimit: 48,  // In hours
 }
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.0",
-	name: "Literally nothing",
+	num: "0.1",
+	name: "Release Update",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
