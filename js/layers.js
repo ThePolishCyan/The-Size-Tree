@@ -25,6 +25,8 @@ addLayer("p", {
         {key: "p", description: "P: Reset for prestige points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
     layerShown(){return true}, upgrades: {
+        rows: 3,
+        cols: 5,       
         11: {
             title: "Vector Cloning I",
             description: "Double your vector gain.",
