@@ -23,7 +23,7 @@ addLayer("p", {
     },
     row: 0, // Row the layer is in on the tree (0 is the first row)
     hotkeys: [
-        {key: "p", description: "P: Reset for prestige points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
+        {key: "0", description: "0: Reset for 0D points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
     layerShown(){return true}, upgrades: {
         rows: 3,
@@ -48,6 +48,14 @@ addLayer("p", {
             cost: new Decimal(16),
             effect() {
                 return player.points.add(1).pow(0.15)
+            },
+        },
+        14: {
+            title: "Vector Scale Cloning II",
+            description: "Multiply your 0D points gain depending on your... 0d points?",
+            cost: new Decimal(128),
+            effect() {
+                return player.points.add(1).pow(0.01)
             },
         },
     },
