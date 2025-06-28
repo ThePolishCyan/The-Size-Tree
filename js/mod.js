@@ -1,5 +1,6 @@
 let modInfo = {
 	name: "The Size Tree",
+	id: "SizeTree83",
 	author: "ThePolishCyan",
 	pointsName: "vectors",
 	modFiles: ["layers.js", "tree.js"],
