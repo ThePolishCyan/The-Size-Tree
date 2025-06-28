@@ -45,7 +45,7 @@ addLayer("p", {
         13: {
             title: "0D Gain I",
             description: "Multiply your 0D points gain depending on your vectors.",
-            cost: new Decimal(4),
+            cost: new Decimal(16),
             effect() {
                 return player.points.add(1).pow(0.15)
             },
