@@ -62,9 +62,11 @@ addLayer("p", {
         tabFormat: [
             "main-display",
             "prestige-button",
+            ["display-text", () => `<div style="margin-top:10px;">Total 0D Points earned: ${format(player.s.total)}</div>`],
             ["display-text", function() {
                return `Total Space Points earned: ${format(player.s.total)}`
             }],
+            ["display-text", () => `<div style="margin-top:10px;">Total Space Points earned: ${format(player.s.total)}</div>`],
             "upgrades"
         ],
 })
@@ -108,9 +110,11 @@ addLayer("s", {
     tabFormat: [
         "main-display",
         "prestige-button",
+        ["display-text", () => `<div style="margin-top:10px;">Total Space Points earned: ${format(player.s.total)}</div>`],
         ["display-text", function() {
             return `Total Space Points earned: ${format(player.s.total)}`
         }],
+        ["display-text", () => `<div style="margin-top:10px;">Total Space Points earned: ${format(player.s.total)}</div>`],
         "upgrades"
     ],
 },)
