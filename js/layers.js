@@ -98,10 +98,14 @@ addLayer("s", {
             },
         },
     },
-    tooltip() {
-    return `You have ${format(player.s.points)} Space Points.<br>` +
-           `Total Space Points earned: ${format(player.s.total)}`
-},
+    tabFormat: [
+        "main-display",
+        "prestige-button",
+        ["display-text", function() {
+            return `Total Space Points earned: ${format(player.s.total)}`
+        }],
+        "upgrades"
+    ],
 },)
 
 
