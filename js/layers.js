@@ -132,3 +132,14 @@ addLayer("s", {
 },)
 
 
+const originalLayerDataReset = layerDataReset
+layerDataReset = function(layer) {
+    const data = player[layer]
+    const savedTotal = data?.total
+
+    originalLayerDataReset(layer)
+
+    if (savedTotal !== undefined) {
+        player[layer].total = savedTotal
+    }
+}
