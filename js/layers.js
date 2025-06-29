@@ -5,6 +5,7 @@ addLayer("p", {
     startData() { return {
         unlocked: true,
 		points: new Decimal(0),
+        total: new Decimal(0),
     }},
     color: "#BAFFBE",
     requires: new Decimal(10), // Can be a function that takes requirement increases into account
@@ -75,6 +76,7 @@ addLayer("s", {
         unlocked: true,
 		points: new Decimal(0),
         timer: 0,
+        total: new Decimal(0),
     }},
     color: "#2C3E50",
     requires: new Decimal(64), // Can be a function that takes requirement increases into account

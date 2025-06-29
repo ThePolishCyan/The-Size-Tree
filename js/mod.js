@@ -81,3 +81,29 @@ function maxTickLength() {
 // you can cap their current resources with this.
 function fixOldSave(oldVersion){
 }
+
+function fixTotalResets() {
+    for (let layer in layers) {
+        let originalDoReset = layers[layer].doReset
+        layers[layer].doReset = function(resettingLayer) {
+            if (resettingLayer !== this.layer && player[this.layer]?.total !== undefined) {
+                let keepTotal = player[this.layer].total
+                // Najpierw wywołaj oryginalny doReset, jeśli istnieje
+                let resetResult = true
+                if (originalDoReset) resetResult = originalDoReset.call(this, resettingLayer)
+                
+                if (resetResult !== false) {
+                    let layerData = this.startData()
+                    layerData.total = keepTotal
+                    player[this.layer] = layerData
+                    return false // zapobiega domyślnemu resetowi
+                }
+                return resetResult
+            }
+            if (originalDoReset) return originalDoReset.call(this, resettingLayer)
+            return true
+        }
+    }
+}
+
+fixTotalResets()
