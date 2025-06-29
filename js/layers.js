@@ -59,7 +59,14 @@ addLayer("p", {
             },
         },
     },
-
+        tabFormat: [
+            "main-display",
+            "prestige-button",
+            ["display-text", function() {
+               return `Total Space Points earned: ${format(player.s.total)}`
+            }],
+            "upgrades"
+        ],
 })
 addLayer("s", {
     name: "Space Points", // This is optional, only used in a few places, If absent it just uses the layer id.
