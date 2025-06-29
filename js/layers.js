@@ -70,7 +70,7 @@ addLayer("s", {
 		points: new Decimal(0),
     }},
     color: "#2C3E50",
-    requires: new Decimal(256), // Can be a function that takes requirement increases into account
+    requires: new Decimal(64), // Can be a function that takes requirement increases into account
     resource: "space points", // Name of prestige currency
     baseResource: "OD points", // Name of resource prestige is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
@@ -84,7 +84,7 @@ addLayer("s", {
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
-    row: 0, // Row the layer is in on the tree (0 is the first row)
+    row: 1, // Row the layer is in on the tree (0 is the first row)
     hotkeys: [
         {key: "0", description: "0: Reset for 0D points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
