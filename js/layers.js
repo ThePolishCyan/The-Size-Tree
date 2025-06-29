@@ -4,7 +4,7 @@ addLayer("p", {
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
-		points: new Decimal(0),
+        points: new Decimal(0),
         total: new Decimal(0),
     }},
     color: "#BAFFBE",
@@ -41,8 +41,8 @@ addLayer("p", {
             effect() {
                 return player[this.layer].points.add(1).pow(0.5)
             },
-        },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" },
+        },
         13: {
             title: "0D Gain I",
             description: "Vectors boost 0D Points gain.",
@@ -60,21 +60,22 @@ addLayer("p", {
             },
         },
     },
-        tabFormat: [
-            "main-display",
-            "prestige-button",
-            ["display-text", () => `<div style="margin-top:10px;">Total 0D Points earned: ${format(player.p.total)}</div>`],
-            ["display-text", () => " "],
-            "upgrades"
-        ],
+    tabFormat: [
+        "main-display",
+        "prestige-button",
+        ["display-text", () => `<div style="margin-top:10px;">Total 0D Points earned: ${format(player.p.total)}</div>`],
+        ["display-text", () => " "],
+        "upgrades"
+    ],
 })
+
 addLayer("s", {
     name: "Space Points", // This is optional, only used in a few places, If absent it just uses the layer id.
     symbol: "SP", // This appears on the layer's node. Default is the id with the first letter capitalized
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
-		points: new Decimal(0),
+        points: new Decimal(0),
         timer: 0,
         total: new Decimal(0),
     }},
@@ -84,7 +85,7 @@ addLayer("s", {
     baseResource: "OD points", // Name of resource prestige is based on
     baseAmount() {return player.p.points}, // Get the current amount of baseResource
     type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
-        branches: ["p"],
+    branches: ["p"],
     exponent: 0.5, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         let mult = new Decimal(1)
@@ -111,6 +112,12 @@ addLayer("s", {
             description: "Adds 1 0D Point every 4 seconds.",
             cost: new Decimal(2),
         },
+        13: {
+            title: "Upgrade Preservation I",
+            description: "Ulepszenia 11 i 12 w 0D Points nie resetują się przy prestiżu Space Points.",
+            cost: new Decimal(2),
+            effect() { return true },
+        },
     },
     tabFormat: [
         "main-display",
@@ -121,7 +128,7 @@ addLayer("s", {
     ],
     update(diff) {
         if (hasUpgrade('s', 12)) {
-           player.s.timer += diff
+            player.s.timer += diff
             while (player.s.timer >= 4) {
                 player.p.points = player.p.points.add(1)
                 player.p.total = player.p.total.add(1)
@@ -129,17 +136,29 @@ addLayer("s", {
             }
         }
     }
-},)
-
+})
 
 const originalLayerDataReset = layerDataReset
 layerDataReset = function(layer) {
     const data = player[layer]
     const savedTotal = data?.total
 
-    originalLayerDataReset(layer)
+    if (layer === "p" && hasUpgrade("s", 13)) {
+        // Zachowaj upgrade'y 11 i 12 warstwy p
+        const savedUpgrades = {
+            11: player.p.upgrades.includes(11),
+            12: player.p.upgrades.includes(12),
+        }
 
-    if (savedTotal !== undefined) {
-        player[layer].total = savedTotal
+        originalLayerDataReset(layer)
+
+        if (savedTotal !== undefined) player[layer].total = savedTotal
+
+        // Przywróć upgrade'y 11 i 12, jeśli były kupione
+        if (savedUpgrades[11] && !player.p.upgrades.includes(11)) player.p.upgrades.push(11)
+        if (savedUpgrades[12] && !player.p.upgrades.includes(12)) player.p.upgrades.push(12)
+    } else {
+        originalLayerDataReset(layer)
+        if (savedTotal !== undefined) player[layer].total = savedTotal
     }
 }
