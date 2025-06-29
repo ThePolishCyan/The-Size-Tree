@@ -35,7 +35,7 @@ addLayer("p", {
         },
         12: {
             title: "Vector Scale Cloning I",
-            description: "Multiply your vector gain depending on your 0D points.",
+            description: "0D Points boost vector gain.",
             cost: new Decimal(4),
             effect() {
                 return player[this.layer].points.add(1).pow(0.5)
@@ -44,7 +44,7 @@ addLayer("p", {
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" },
         13: {
             title: "0D Gain I",
-            description: "Multiply your 0D points gain depending on your vectors.",
+            description: "Vectors boost 0D Points gain.",
             cost: new Decimal(16),
             effect() {
                 return player.points.add(1).pow(0.15)
@@ -52,7 +52,7 @@ addLayer("p", {
         },
         14: {
             title: "Vector Scale Cloning II",
-            description: "Multiply your vector gain depending on your... vectors?",
+            description: "Vectors boost vector gain.",
             cost: new Decimal(40),
             effect() {
                 return player.points.add(1).pow(0.01)
@@ -88,7 +88,16 @@ addLayer("s", {
     hotkeys: [
         {key: "0", description: "0: Reset for 0D points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
-    layerShown(){return true}, 
+    layerShown(){return true}, upgrades: {
+        11: {
+            title: "More Than Infinitely Small I",
+            description: "Space Points boost vector gain.",
+            cost: new Decimal(1),
+            effect() {
+                return player.s.points.add(1).pow(0.5)
+            },
+        },
     },
+},)
 
-)
+
