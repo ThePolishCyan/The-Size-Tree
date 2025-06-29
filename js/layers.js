@@ -62,7 +62,7 @@ addLayer("p", {
         tabFormat: [
             "main-display",
             "prestige-button",
-            ["display-text", () => `<div style="margin-top:10px;">Total 0D Points earned: ${format(player.s.total)}</div>`],
+            ["display-text", () => `<div style="margin-top:10px;">Total 0D Points earned: ${format(player.p.total)}</div>`],
             ["display-text", () => " "],
             "upgrades"
         ],
