@@ -94,7 +94,7 @@ addLayer("s", {
             description: "Space Points boost vector gain.",
             cost: new Decimal(1),
             effect() {
-                return player.s.points.add(1).pow(0.5)
+                return player.s.total.add(1).pow(0.5)
             },
         },
     },
