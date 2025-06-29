@@ -104,6 +104,11 @@ addLayer("s", {
                 return player.s.total.add(1).pow(0.5)
             },
         },
+        12: {
+            title: "0D Point Generator I",
+            description: "Adds 1 0D Point every 4 seconds.",
+            cost: new Decimal(2),
+        },
     },
     tabFormat: [
         "main-display",
@@ -112,6 +117,15 @@ addLayer("s", {
         ["display-text", () => " "],
         "upgrades"
     ],
+    update(diff) {
+    if (hasUpgrade('s', 12)) { 
+            this.data.timer += diff
+            if (this.data.timer >= 4) {  
+                player.p.points = player.p.points.add(1)  
+                this.data.timer = 0
+            }
+        }
+    },
 },)
 
 
