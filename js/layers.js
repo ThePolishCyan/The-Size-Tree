@@ -86,7 +86,7 @@ addLayer("s", {
     },
     row: 1, // Row the layer is in on the tree (0 is the first row)
     hotkeys: [
-        {key: "0", description: "0: Reset for 0D points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
+        {key: "s", description: "s: Reset for Space Points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
     layerShown(){return true}, upgrades: {
         11: {
@@ -98,6 +98,10 @@ addLayer("s", {
             },
         },
     },
+    tooltip() {
+    return `You have ${format(player.s.points)} Space Points.<br>` +
+           `Total Space Points earned: ${format(player.s.total)}`
+},
 },)
 
 
