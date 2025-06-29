@@ -114,7 +114,7 @@ addLayer("s", {
         },
         13: {
             title: "Upgrade Preservation I",
-            description: "Ulepszenia 11 i 12 w 0D Points nie resetują się przy prestiżu Space Points.",
+            description: "When buing Space Points, the first two 0D points upgrades don't reset",
             cost: new Decimal(2),
             effect() { return true },
         },
