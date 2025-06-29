@@ -52,7 +52,7 @@ addLayer("p", {
         },
         14: {
             title: "Vector Scale Cloning II",
-            description: "Multiply your 0D points gain depending on your... 0d points?",
+            description: "Multiply your vector gain depending on your... vectors?",
             cost: new Decimal(40),
             effect() {
                 return player.points.add(1).pow(0.01)
