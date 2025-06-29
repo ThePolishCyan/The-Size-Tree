@@ -70,7 +70,7 @@ addLayer("s", {
 		points: new Decimal(0),
     }},
     color: "#2C3E50",
-    requires: new Decimal(200), // Can be a function that takes requirement increases into account
+    requires: new Decimal(256), // Can be a function that takes requirement increases into account
     resource: "space points", // Name of prestige currency
     baseResource: "OD points", // Name of resource prestige is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
@@ -79,7 +79,6 @@ addLayer("s", {
     exponent: 0.5, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         let mult = new Decimal(1)
-        if (hasUpgrade('p', 13)) mult = mult.times(upgradeEffect('p', 13))
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -89,39 +88,7 @@ addLayer("s", {
     hotkeys: [
         {key: "0", description: "0: Reset for 0D points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
-    layerShown(){return true}, upgrades: {
-        rows: 3,
-        cols: 5,       
-        11: {
-            title: "Vector Cloning I",
-            description: "Double your vector gain.",
-            cost: new Decimal(1),
-        },
-        12: {
-            title: "Vector Scale Cloning I",
-            description: "Multiply your vector gain depending on your 0D points.",
-            cost: new Decimal(4),
-            effect() {
-                return player[this.layer].points.add(1).pow(0.5)
-            },
-        },
-            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" },
-        13: {
-            title: "0D Gain I",
-            description: "Multiply your 0D points gain depending on your vectors.",
-            cost: new Decimal(16),
-            effect() {
-                return player.points.add(1).pow(0.15)
-            },
-        },
-        14: {
-            title: "Vector Scale Cloning II",
-            description: "Multiply your 0D points gain depending on your... 0d points?",
-            cost: new Decimal(40),
-            effect() {
-                return player.points.add(1).pow(0.01)
-            },
-        },
+    layerShown(){return true}, 
     },
 
-})
+)
