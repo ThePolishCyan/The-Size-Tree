@@ -120,15 +120,15 @@ addLayer("s", {
         "upgrades"
     ],
     update(diff) {
-    if (hasUpgrade('s', 12)) { 
-            this.data.timer += diff
-            if (this.data.timer >= 4) {  
+        if (hasUpgrade('s', 12)) {
+           player.s.timer += diff
+            while (player.s.timer >= 4) {
                 player.p.points = player.p.points.add(1)
                 player.p.total = player.p.total.add(1)
-                this.data.timer = 0
+                player.s.timer -= 4
             }
         }
-    },
+    }
 },)
 
 
