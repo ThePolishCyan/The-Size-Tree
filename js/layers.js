@@ -118,6 +118,11 @@ addLayer("s", {
             cost: new Decimal(2),
             effect() { return true },
         },
+        14: {
+            title: "Vector Cloning II",
+            description: "Quintuply your vector gain.",
+            cost: new Decimal(3),
+        },
     },
     tabFormat: [
         "main-display",
